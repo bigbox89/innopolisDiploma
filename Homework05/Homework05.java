@@ -14,6 +14,7 @@ public class Homework05 {
             }
             num = Integer.parseInt(reader.readLine());
         }
+		reader.close();
 	System.out.println("Минимальная цифра последовательности:" + min);	
     }
 }
