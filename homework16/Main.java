@@ -4,6 +4,7 @@
  * 45, 78, 10, 17, 89, 16, size = 6
  * removeAt(3)
  * 45, 78, 10, 89, 16, size = 5
+ *  Реализовать метод T get(int index) для LinkedList
  */
 public class Main {
     public static void main(String[] args) {
@@ -18,7 +19,17 @@ public class Main {
         numbers.removeAt(3);
         System.out.println("Removed element with index = 3");
         System.out.println(numbers.toString());
-
+        //-------------------------------Linked List----------------------//
+        LinkedList<Integer> list = new LinkedList<>();
+        list.add(34);
+        list.add(120);
+        list.add(-10);
+        list.add(11);
+        list.add(50);
+        list.add(100);
+        list.add(99);
+        //Запрос элемента по индексу массива
+        System.out.println( list.get(1));
     }
 
 
