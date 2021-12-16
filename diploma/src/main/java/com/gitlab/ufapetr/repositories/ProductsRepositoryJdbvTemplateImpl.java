@@ -1,3 +1,5 @@
+/*
+
 package com.gitlab.ufapetr.repositories;
 
 import com.gitlab.ufapetr.models.Order;
@@ -75,3 +77,5 @@ public class ProductsRepositoryJdbvTemplateImpl implements ProductsRepository {
         jdbcTemplate.update(SQL_INSERT, product.getDescription(), product.getPrice(), product.getQuantity());
     }
 }
+
+*/

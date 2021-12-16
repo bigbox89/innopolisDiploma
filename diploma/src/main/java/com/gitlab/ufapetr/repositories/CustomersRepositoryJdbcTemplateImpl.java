@@ -1,3 +1,4 @@
+/*
 package com.gitlab.ufapetr.repositories;
 
 import com.gitlab.ufapetr.models.Customer;
@@ -15,8 +16,14 @@ public class CustomersRepositoryJdbcTemplateImpl implements CustomersRepository 
 
     //language=SQL
     private static final String SQL_SELECT_ALL = "select * from customer order by id";
+    //language=SQL
+    private static final String SQL_DELETE_BY_ID ="delete from customer where id = ?";
+    //language=SQL
+    private static final String SQL_SELECT_BY_ID = "select * from customer where id = ?";
+    //language=SQL
+    private static final String SQL_UPDATE_BY_ID = "update customer set name = ? where id = ?";;
 
-    
+
     private JdbcTemplate jdbcTemplate;
 
     public CustomersRepositoryJdbcTemplateImpl(DataSource dataSource) {
@@ -40,5 +47,16 @@ public class CustomersRepositoryJdbcTemplateImpl implements CustomersRepository 
         jdbcTemplate.update(SQL_INSERT, customer.getName());
     }
 
+    @Override
+    public void delete(Integer customerId) {
+        jdbcTemplate.update(SQL_DELETE_BY_ID, customerId);
+    }
+
+    @Override
+    public Customer findById(Integer customer_id) {
+        return jdbcTemplate.queryForObject(SQL_SELECT_BY_ID, userRowMapper, customer_id);
+    }
+
 }
 
+*/

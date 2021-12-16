@@ -1,16 +1,10 @@
 package com.gitlab.ufapetr.repositories;
 
-import com.gitlab.ufapetr.models.Order;
 import com.gitlab.ufapetr.models.Product;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface ProductsRepository {
+public interface ProductsRepository extends JpaRepository<Product, Integer> {
     List<Product> findAll();
-
-    List<Product> findAllByPrice(double price);
-
-    // найти все товары по количеству заказов, в которых участвуют
-    List<Order> findAllByOrdersCount(int ordersCount);
-    void save(Product product);
 }
