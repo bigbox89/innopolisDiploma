@@ -1,0 +1,10 @@
+o001aa111|Camry|Black|133|820000
+o002aa111|Corolla|Green|0|134000
+o003aa111|Camry|Black|133|790000
+o004aa111|Logan|Black|133|556530
+o005aa111|Lada|Green|133|110
+o006aa111|Camry|Black|133|720000
+o007aa111|Duster|Black|133|620000
+o008aa111|Camry|Green|133|10
+o009aa111|Mazda|Black|133|620000
+o009aa111|Mazda|Black|133|2
