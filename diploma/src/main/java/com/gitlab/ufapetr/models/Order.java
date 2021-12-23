@@ -1,33 +1,29 @@
 package com.gitlab.ufapetr.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.gitlab.ufapetr.forms.OrderForm;
+import lombok.*;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Entity
+@Table (name = "orders")
 public class Order {
-    private Integer product_id;
-    private Integer customer_id;
+
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private Date order_date;
     private Integer quantity;
-    private String productDescription;
-    private Double productPrice;
-
-    public Order( int quantity,  String productDescription, double productPrice) {
-        this.quantity = quantity;
-        this.productDescription = productDescription;
-        this.productPrice = productPrice;
-    }
-
-    public Order(int product_id, int customer_id, int quantity) {
-        this.product_id = product_id;
-        this.customer_id = customer_id;
-        this.quantity = quantity;
-    }
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 }

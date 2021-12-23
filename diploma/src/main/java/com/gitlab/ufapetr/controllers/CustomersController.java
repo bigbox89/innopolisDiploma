@@ -4,11 +4,13 @@ import com.gitlab.ufapetr.forms.CustomerForm;
 import com.gitlab.ufapetr.models.Customer;
 import com.gitlab.ufapetr.repositories.CustomersRepository;
 import com.gitlab.ufapetr.services.CustomersService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.Serializable;
 import java.util.List;
 
 
@@ -42,11 +44,21 @@ public class CustomersController {
     public String getCustomerPage(Model model,@PathVariable("customer-id") Integer customer_id){
         Customer customer = customersService.getCustomer(customer_id);
         model.addAttribute("customer", customer);
+         System.out.println("Получен пользователь " + customer.getName() + customer.getOrders().size());
+
         return "customer";
     }
 
     @PostMapping ("/customers")
     public String addCustomer(CustomerForm form){
+        //создаем пользователя
+        customersService.addCustomer(form);
+        System.out.println("Добавлен пользователь с Именем " + form.getName());
+        return "redirect:/customers_list";
+    }
+
+    @PostMapping ("/addcar")
+    public String addCar(CustomerForm form){
         //создаем пользователя
         customersService.addCustomer(form);
         System.out.println("Добавлен пользователь с Именем " + form.getName());
@@ -64,5 +76,6 @@ public class CustomersController {
         customersService.updateCustomer(customerId, form);
         return "redirect:/customers_list";
     }
+
 
 }

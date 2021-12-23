@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Страница автомобиля</title>
+    <title>Страница запчасти</title>
     <style>
         table {
             width: 100%;
@@ -41,47 +41,27 @@
     </style>
 </head>
 <body>
-<h1>Страница автомобиля</h1>
+<h1>Страница запчасти</h1>
 <hr size=3px width=500px align="left">
-<h1>${product.description}</h1>
+<h1>${part.description}</h1>
 <br>
-<form method="post" action="/products/${product.id}/update">
+<form method="post" action="/parts/${part.id}/update">
     <label>
-        Id: <input name = "product-id" placeholder="${product.id}">
+        Id: <input name = "part-id" placeholder="${part.id}">
     </label>
     <label>
-        Название: <input name = "description" placeholder="${product.description}">
+        Название: <input name = "description" placeholder="${part.description}">
     </label>
     <label>
-        Цена: <input name = "price" placeholder="${product.price}">
+        Цена: <input name = "price" placeholder="${part.price}">
     </label>
     <label>
-        Количество: <input name = "quantity" placeholder="${product.quantity}">
+        Количество: <input name = "quantity" placeholder="${part.quantity}">
     </label>
     <input type="submit" value="Обновить">
 </form>
 <br>
-<h1>Доступные запчасти</h1>
-<table>
-    <tr>
-        <th>ID запчасти</th>
-        <th>Автомобиль</th>
-        <th>Описание</th>
-        <th>Цена</th>
-        <th>Количество</th>
 
-    </tr>
-    <#list  product.parts as part>
-        <tr>
-            <td>${part.id}</td>
-            <td>${part.product.description}</td>
-            <td>${part.description}</td>
-            <td>${part.price}</td>
-            <td>${part.quantity}</td>
-
-        </tr>
-    </#list>
-</table>
 <a href="/index.html">
     На главную
 </a>

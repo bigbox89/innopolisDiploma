@@ -2,11 +2,13 @@ package com.gitlab.ufapetr.services;
 
 import com.gitlab.ufapetr.forms.CustomerForm;
 import com.gitlab.ufapetr.models.Customer;
+import com.gitlab.ufapetr.models.Product;
 import com.gitlab.ufapetr.repositories.CustomersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Set;
 
 @Component
 public class CustomerServiceImpl implements CustomersService {

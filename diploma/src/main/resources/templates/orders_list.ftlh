@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="style.css">
-
-    <title>Products list</title>
+    <title>Orders list</title>
     <style>
         table {
             width: 100%;
@@ -17,7 +16,7 @@
             font-size: 15px;
             background: #fff!important;
         }
-         th {
+        th {
             font-weight: bold;
             padding: 7px;
             background: #ffd300;
@@ -27,14 +26,14 @@
             border-top: 3px solid #fff;
             border-bottom: 3px solid #ffd300;
         }
-         td {
+        td {
             padding: 7px;
             border: none;
             border-top: 3px solid #fff;
             border-bottom: 3px solid #fff;
             font-size: 15px;
         }
-       tbody tr:nth-child(even){
+        tbody tr:nth-child(even){
             background: #f8f8f8!important;
         }
         input {
@@ -42,51 +41,62 @@
         }
     </style>
 </head>
-
 <body>
-<h1>Добавление автомобиля</h1>
-<form method="post" action="/products">
+
+<h1>Гараж</h1>
+
+<h1>Добавление автомобилей</h1>
+<form method="post" action="/addorders">
     <label>Марка автомобиля:
-        <input type="text" name="description" placeholder="Описание">
     </label>
-    <label>Цена:
-        <input type="text" name="price" placeholder="Цена">
+    <select name = "product_id">
+        <#list products as key, value>
+            <option value="${key}">${value}</option>
+        </#list>
+    </select>
+    <label>Выбор водителя:
     </label>
+    <select name = "customer_id">
+        <#list customers as key, value>
+            <option value="${key}">${value}</option>
+        </#list>
+    </select>
     <label>Количество:
         <input type="text" name="quantity" placeholder="Количество">
     </label>
     <input type="submit" value="Добавить">
 </form>
-
-<h1>Список автомобилей</h1>
-
+<br>
 <br>
 <table>
     <tr>
-        <th>ID</th>
-        <th>Описание</th>
-        <th>Цена</th>
+        <th>ID заказа</th>
+        <th>Дата покупки</th>
         <th>Количество</th>
-        <th>Действия</th>
+        <th>Имя покупателя</th>
+        <th>Название автомобиля</th>
     </tr>
-    <#list  products as product>
+    <#list  orders as order>
         <tr>
-            <td>${product.id}</td>
-
-            <td><a href="/product/${product.id}">
-                    ${product.description}
+            <td>${order.id}</td>
+            <td>${order.order_date}</td>
+            <td>${order.quantity}</td>
+            <td><a href="/customer/${order.customer.id}">
+                    ${order.customer.name}
+                </a>
+            </td>
+            <td><a href="/product/${order.product.id}">
+                    ${order.product.description}
                 </a>
             </td>
 
-            <td>${product.price}</td>
-            <td>${product.quantity}</td>
             <td>
-                <form method="post" action="/products/${product.id}/delete"}>
+                <form method="post" action="/orders/${order.id}/delete"}>
                     <input type="submit" value="Удалить">
                 </form>
             </td>
             <td>
-                <form method="get" action="/product/${product.id}"}>
+                <form method="get" action="/order/${order.id}"}>
                     <input type="submit" value="Редактировать">
                 </form>
             </td>

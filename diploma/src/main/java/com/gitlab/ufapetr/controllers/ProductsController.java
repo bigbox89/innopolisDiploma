@@ -45,6 +45,7 @@ public class ProductsController {
     public String getProductPage(Model model,@PathVariable("product-id") Integer product_id){
         Product product = productService.getProduct(product_id);
         model.addAttribute("product", product);
+        System.out.printf("Вывод списка заказов ");
         return "product";
     }
 

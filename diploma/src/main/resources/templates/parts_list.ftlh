@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Страница автомобиля</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Parts list</title>
     <style>
         table {
             width: 100%;
@@ -41,27 +42,29 @@
     </style>
 </head>
 <body>
-<h1>Страница автомобиля</h1>
-<hr size=3px width=500px align="left">
-<h1>${product.description}</h1>
-<br>
-<form method="post" action="/products/${product.id}/update">
-    <label>
-        Id: <input name = "product-id" placeholder="${product.id}">
+
+<h1>Список запчастей</h1>
+<h1>Добавление запчасти</h1>
+<form method="post" action="/parts">
+    <label>Марка автомобиля:
     </label>
-    <label>
-        Название: <input name = "description" placeholder="${product.description}">
+    <select name = "product_id">
+        <#list products as key, value>
+            <option value="${key}">${value}</option>
+        </#list>
+    </select>
+    <label>Описание:
+        <input type="text" name="description" placeholder="Описание запчасти">
     </label>
-    <label>
-        Цена: <input name = "price" placeholder="${product.price}">
+    <label>Цена:
+        <input type="text" name="price" placeholder="Цена запчасти">
     </label>
-    <label>
-        Количество: <input name = "quantity" placeholder="${product.quantity}">
+    <label>Количество:
+        <input type="text" name="quantity" placeholder="Количество запчастей">
     </label>
-    <input type="submit" value="Обновить">
+    <input type="submit" value="Добавить">
 </form>
 <br>
-<h1>Доступные запчасти</h1>
 <table>
     <tr>
         <th>ID запчасти</th>
@@ -71,7 +74,7 @@
         <th>Количество</th>
 
     </tr>
-    <#list  product.parts as part>
+    <#list  parts as part>
         <tr>
             <td>${part.id}</td>
             <td>${part.product.description}</td>
@@ -79,9 +82,20 @@
             <td>${part.price}</td>
             <td>${part.quantity}</td>
 
+            <td>
+                <form method="post" action="/parts/${part.id}/delete"}>
+                    <input type="submit" value="Удалить">
+                </form>
+            </td>
+            <td>
+                <form method="get" action="/part/${part.id}"}>
+                    <input type="submit" value="Редактировать">
+                </form>
+            </td>
         </tr>
     </#list>
 </table>
+<br>
 <a href="/index.html">
     На главную
 </a>

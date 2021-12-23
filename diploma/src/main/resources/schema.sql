@@ -64,4 +64,15 @@ select (order_date,description,price,name) from orders
                                                     left join customer on orders.customer_id = customer.id
 where description = 'Renault Logan';
 
+--создание таблицы с запчастями
+create table parts
+(
+    id serial primary key,
+    description varchar(128),
+    price float,
+    quantity int,
+    product_id integer,
+    quantity integer,
+    foreign key (product_id) references product(id)
 
+);

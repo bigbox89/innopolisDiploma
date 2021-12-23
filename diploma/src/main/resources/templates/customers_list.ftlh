@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <title>Users list</title>
+    <title>Drivers list</title>
     <style>
         table {
             width: 100%;
@@ -42,14 +42,14 @@
     </style>
 </head>
 <body>
-<h1>Добавление пользователя</h1>
+<h1>Добавление водителя</h1>
 <form method="post" action="/customers">
     <label>Имя:
         <input type="text" name="name" placeholder="Имя">
     </label>
     <input type="submit" value="Добавить">
 </form>
-<h1>Список пользователей</h1>
+<h1>Список водителей</h1>
 
 <br>
 <table>
@@ -61,15 +61,15 @@
     <#list  customers as customer>
         <tr>
             <td>${customer.id}</td>
-            <td>${customer.name}</td>
+
+            <td><a href="/customer/${customer.id}">
+                    ${customer.name}
+            </a>
+
+            </td>
             <td>
                 <form method="post" action="/customers/${customer.id}/delete"}>
                     <input type="submit" value="Удалить">
-                </form>
-            </td>
-            <td>
-                <form method="get" action="/customer/${customer.id}"}>
-                    <input type="submit" value="Редактировать">
                 </form>
             </td>
         </tr>
