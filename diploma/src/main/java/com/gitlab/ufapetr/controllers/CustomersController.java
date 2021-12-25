@@ -2,15 +2,12 @@ package com.gitlab.ufapetr.controllers;
 
 import com.gitlab.ufapetr.forms.CustomerForm;
 import com.gitlab.ufapetr.models.Customer;
-import com.gitlab.ufapetr.repositories.CustomersRepository;
 import com.gitlab.ufapetr.services.CustomersService;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.Serializable;
 import java.util.List;
 
 
@@ -31,7 +28,7 @@ public class CustomersController {
         return "customers";
     }
 
-    @GetMapping ("/customers_list")
+    @GetMapping ("customers_list")
     public String getCustomersList(Model model){
         //получаем пользователей
         List<Customer> customers = customersService.getAllCustomers();

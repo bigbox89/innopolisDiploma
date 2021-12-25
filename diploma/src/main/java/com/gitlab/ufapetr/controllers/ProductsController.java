@@ -1,10 +1,7 @@
 package com.gitlab.ufapetr.controllers;
 
-import com.gitlab.ufapetr.forms.CustomerForm;
 import com.gitlab.ufapetr.forms.ProductForm;
-import com.gitlab.ufapetr.models.Customer;
 import com.gitlab.ufapetr.models.Product;
-import com.gitlab.ufapetr.repositories.ProductsRepository;
 import com.gitlab.ufapetr.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,7 +29,7 @@ public class ProductsController {
         return "redirect:/products.html";
     }
 
-    @GetMapping ("/products_list")
+    @GetMapping ("products_list")
     public String getProductsList(Model model){
         //получаем список автомобилей
         List<Product> products = productService.getAllProducts();
@@ -41,7 +38,7 @@ public class ProductsController {
         return "products_list";
     }
 
-    @GetMapping ("/product/{product-id}")
+    @GetMapping ("product/{product-id}")
     public String getProductPage(Model model,@PathVariable("product-id") Integer product_id){
         Product product = productService.getProduct(product_id);
         model.addAttribute("product", product);

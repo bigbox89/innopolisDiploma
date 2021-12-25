@@ -7,7 +7,6 @@ import com.gitlab.ufapetr.services.PartsService;
 import com.gitlab.ufapetr.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 @Controller
 public class PartsController {
@@ -32,7 +30,7 @@ public class PartsController {
     public String getParts(){
         //получаем список запчастей
         System.out.println("Получен список запчастей");
-        return "redirect:/parts_list";
+        return "redirect:/parts.html";
     }
 
     @GetMapping ("/parts_list")
@@ -51,7 +49,7 @@ public class PartsController {
         List<Part> parts = partsService.getAllParts();
         model.addAttribute("parts", parts);
         System.out.println("Получен список запчастей");
-        return "parts_list";
+        return  "parts_list";
     }
 
     @GetMapping ("/part/{part-id}")
@@ -68,7 +66,7 @@ public class PartsController {
         partForm.setProduct(productService.getProduct(partForm.getProduct_id()));
         //Создаем продукт-запчасть
         partsService.addPart(partForm);
-        System.out.println("Добавлена запчасть "+ partForm.toString());
+        //System.out.println("Добавлена запчасть "+ partForm.toString());
         return "redirect:/parts_list";
     }
 

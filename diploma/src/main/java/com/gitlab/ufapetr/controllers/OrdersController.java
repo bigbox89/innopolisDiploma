@@ -32,7 +32,7 @@ public class OrdersController {
         this.customersService = customersService;
     }
 
-    @GetMapping("/orders_list")
+    @GetMapping("orders_list")
     public String getOrdersList(Model model) {
 
         //получаем список пользователей
@@ -81,18 +81,18 @@ public class OrdersController {
         orderForm.setOrder_date(date);
         ordersService.addOrder(orderForm);
         System.out.println("Добавлен новый заказ ");
-        return ("redirect:/orders_list");
+        return ("redirect:orders_list");
     }
 
     @PostMapping("orders/{order-id}/delete")
     public String deleteOrder(@PathVariable("order-id") Integer order_id) {
         ordersService.deleteOrder(order_id);
-        return "redirect:/orders_list";
+        return "redirect:orders_list";
     }
 
     @PostMapping("orders/{order-id}/update")
     public String updateOrder(@PathVariable("order-id") Integer order_id, OrderForm form) {
         ordersService.updateOrder(order_id, form);
-        return "redirect:/orders_list";
+        return "redirect:orders_list";
     }
 }

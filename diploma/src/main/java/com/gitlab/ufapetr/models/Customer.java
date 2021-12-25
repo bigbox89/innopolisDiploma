@@ -16,9 +16,18 @@ import java.util.Set;
 @Builder
 @Entity
 public class Customer {
+
+    public enum Role{
+        ADMIN,
+        USER
+    }
+
+    private Role role;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(unique = true)
     private String name;
     private String nick;
     private String password;
@@ -28,6 +37,5 @@ public class Customer {
     )
     @JoinColumn(name = "customer_id")
     private List<Order> orders = new ArrayList<>();
-
 
 }

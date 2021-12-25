@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Страница водителя</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Drivers list</title>
     <style>
         table {
             width: 100%;
@@ -41,48 +42,19 @@
     </style>
 </head>
 <body>
-<h1>Страница водителя</h1>
-<hr size=3px width=500px align="left">
-<h1>${customer.name}</h1>
-<br>
-<form method="post" action="/customers/${customer.id}/update">
-    <label>
-        Id: <input name = "customer-id" placeholder="${customer.id}">
+<h1>Добавление водителя</h1>
+<form method="post" action="/signup">
+    <label>Имя:
+        <input type="text" name="name" placeholder="Имя">
     </label>
-    <label>
-        Имя: <input name = "name" placeholder="${customer.name}">
+    <label>Логин:
+        <input type="text" name="nick" placeholder="Логин">
     </label>
-    <input type="submit" value="Обновить">
+    <label>Пароль:
+        <input type="password" name="password" placeholder="Пароль">
+    </label>
+    <input type="submit" value="Добавить">
 </form>
-
-<br>
-<table>
-    <tr>
-        <th>ID </th>
-        <th>Дата добавления</th>
-        <th>Количество</th>
-        <th>Имя водителя</th>
-        <th>Название автомобиля</th>
-<#list  customer.orders as order>
-    <tr>
-        <td>${order.id}</td>
-        <td>${order.order_date}</td>
-        <td>${order.quantity}</td>
-        <td>${order.customer.name}</td>
-
-
-        <td><a href="/product/${order.product.id}">
-                ${order.product.description}
-            </a>
-        </td>
-
-
-        <td>
-
-        </td>
-    </tr>
-</#list>
-    </table>
 <br>
 <a href="/index.html">
     На главную
