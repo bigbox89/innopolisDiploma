@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 public class PartsController {
@@ -37,12 +38,9 @@ public class PartsController {
     public String getPartsList(Model model){
         //получаем список автомобилей
         List<Product> products = productService.getAllProducts();
-        Map <Integer, String> productsDescription = new HashMap<>();
 
-        for (Product p:products
-             ) {
-            productsDescription.put(p.getId(),p.getDescription());
-        }
+        Map<Integer, String> productsDescription = products.stream()
+                .collect(Collectors.toMap(Product::getId, Product::getDescription));
 
         model.addAttribute("products", productsDescription);
         //получаем список запчастей

@@ -23,7 +23,8 @@ public class CustomerServiceImpl implements CustomersService {
     public void addCustomer(CustomerForm form) {
 
         Customer customer = Customer.builder()
-                .name(form.getName()).build();
+                .name(form.getName())
+                .build();
 
         customersRepository.save(customer);
     }

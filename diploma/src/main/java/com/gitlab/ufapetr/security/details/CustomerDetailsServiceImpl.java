@@ -11,12 +11,12 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 @Component
 public class CustomerDetailsServiceImpl implements UserDetailsService {
-    private final  CustomersRepository customersRepository ;
+    private final CustomersRepository customersRepository;
 
     @Override
     public UserDetails loadUserByUsername(String nick) throws UsernameNotFoundException {
-        Customer customer = customersRepository.findByNick(nick).orElseThrow(()-> new UsernameNotFoundException("User not found"));
-        CustomersDetailsImpl customersDetails = new CustomersDetailsImpl(customer);
-        return customersDetails;
+        return customersRepository.findByNick(nick)
+                .map(CustomersDetailsImpl::new)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 }

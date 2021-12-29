@@ -3,6 +3,7 @@ package com.gitlab.ufapetr.controllers;
 import com.gitlab.ufapetr.forms.ProductForm;
 import com.gitlab.ufapetr.models.Product;
 import com.gitlab.ufapetr.services.ProductService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 
 @Controller
+@Slf4j
 public class ProductsController {
 
     @Autowired
@@ -42,16 +44,15 @@ public class ProductsController {
     public String getProductPage(Model model,@PathVariable("product-id") Integer product_id){
         Product product = productService.getProduct(product_id);
         model.addAttribute("product", product);
-        System.out.printf("Вывод списка заказов ");
+        log.info("Вывод списка заказов ");
         return "product";
     }
 
     @PostMapping("/products")
     public String addProduct(ProductForm productForm){
         //Создаем продукт-автомобиль
-
         productService.addProduct(productForm);
-        System.out.println("Добавлен автомобиль "+ productForm.toString());
+        log.info("Добавлен автомобиль {}", productForm.toString());
         return ("redirect:/products.html");
     }
 
